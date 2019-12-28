@@ -17,6 +17,9 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * 영상 업로드
 * 영상 검색
 * 영상 재생
+* 영상 녹화
+* 영상 조회수 업데이트
+* 댓글 등록
 
 ## 학습 내용
 * Node.js
@@ -24,6 +27,7 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * Babel
 * Middleware
 * Mongo DB
+* Mongoose
 * MVC
 * Pug
 * Routing
@@ -31,5 +35,6 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * User Authentication with passport
 * SCSS
 * Video Controll with js
+* AJAX with AXIOS
 
 ## 추가 구현 내용
