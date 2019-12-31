@@ -10,6 +10,8 @@ WETUBE.
 
 NodeJS, VanillaJS, MongoDB, Heroku
 
+배포주소 : https://immense-scrubland-37555.herokuapp.com (도메인 변경 예정)
+
 ## 기능
 * 회원 가입 및 로그인, 로그아웃
 * 소셜계정 연동(Github, Facebook)
