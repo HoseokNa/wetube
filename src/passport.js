@@ -9,7 +9,7 @@ import {
   kakaoLoginCallback
 } from "./controllers/userController";
 import routes from "./routes";
-import url from "./constants"
+import { url } from "./constants"
 
 passport.use(User.createStrategy());
 

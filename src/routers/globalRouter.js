@@ -14,9 +14,10 @@ import {
   facebookLogin,
   postFacebookLogin,
   kakaoLogin,
-  postKakaoLogin,
+  postKakaoLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
+import { flashMessage } from "../constants";
 
 const globalRouter = express.Router();
 
@@ -36,8 +37,8 @@ globalRouter.get(
   routes.githubCallback,
   passport.authenticate("github", {
     failureRedirect: "/login",
-    successFlash: "Welcome",
-    failureFlash: "Can't log in at this time"
+    successFlash: flashMessage.SUCCESS_LOG_IN,
+    failureFlash: flashMessage.FAIL_LOG_IN
   }),
   postGithubLogIn
 );
@@ -49,8 +50,8 @@ globalRouter.get(
   routes.facebookCallback,
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    successFlash: "Welcome",
-    failureFlash: "Can't log in at this time"
+    successFlash: flashMessage.SUCCESS_LOG_IN,
+    failureFlash: flashMessage.FAIL_LOG_IN
   }),
   postFacebookLogin
 );
@@ -60,8 +61,8 @@ globalRouter.get(
   routes.kakaoCallback,
   passport.authenticate("kakao", {
     failureRedirect: "/login",
-    successFlash: "Welcome",
-    failureFlash: "Can't log in at this time"
+    successFlash: flashMessage.SUCCESS_LOG_IN,
+    failureFlash: flashMessage.FAIL_LOG_IN
   }),
   postKakaoLogin
 );
