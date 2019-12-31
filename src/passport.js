@@ -9,6 +9,7 @@ import {
   kakaoLoginCallback
 } from "./controllers/userController";
 import routes from "./routes";
+import url from "./constants"
 
 passport.use(User.createStrategy());
 
@@ -18,8 +19,8 @@ passport.use(
       clientID: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       callbackURL: process.env.PRODUCTION
-        ? `https://immense-scrubland-37555.herokuapp.com${routes.githubCallback}`
-        : `http://localhost:4000${routes.githubCallback}`
+        ? `${url.PRODUCT_URL}${routes.githubCallback}`
+        : `${url.LOCAL_URL}${routes.githubCallback}`
     },
     githubLoginCallback
   )
@@ -30,7 +31,9 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
-      callbackURL: `https://279ca0a4.ngrok.io${routes.facebookCallback}`,
+      callbackURL: process.env.PRODUCTION
+      ? `${url.PRODUCT_URL}${routes.facebookCallback}`
+      : `${url.LOCAL_URL}${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"]
     },
@@ -43,8 +46,8 @@ passport.use(
     {
       clientID: process.env.KAKAO_ID,
       callbackURL: process.env.PRODUCTION
-        ? `https://immense-scrubland-37555.herokuapp.com${routes.kakaoCallback}`
-        : `http://localhost:4000${routes.kakaoCallback}`
+        ? `${url.PRODUCT_URL}${routes.kakaoCallback}`
+        : `${url.LOCAL_URL}${routes.kakaoCallback}`
     },
     kakaoLoginCallback
   )
