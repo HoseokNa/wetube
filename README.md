@@ -43,3 +43,6 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * Heroku deploy
 
 ## 추가 구현 내용
+* 카카오톡 연동 추가
+* URL 주소 const로 관리
+* FlashMessage const로 관리
