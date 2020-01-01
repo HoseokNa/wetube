@@ -90,8 +90,7 @@ function getCurrentTime() {
 }
 
 async function setTotalTime() {
-  const blob = await fetch(videoPlayer.src).then(response => response.blob());
-  const duration = await getBlobDuration(blob);
+  const duration = await getBlobDuration(videoPlayer.src);
   const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
   setInterval(getCurrentTime, 1000);
