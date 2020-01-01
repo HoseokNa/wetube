@@ -122,9 +122,15 @@ function init() {
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScrnBtn.addEventListener("click", goFullScreen);
-  videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleDrag);
+
+  const timer = setInterval(() => {
+    if (videoPlayer.readyState >= 2) {
+      setTotalTime();
+      clearInterval(timer)
+    }
+  }, 500);
 }
 
 if (videoContainer) {
