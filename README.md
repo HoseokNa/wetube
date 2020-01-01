@@ -18,6 +18,7 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * 회원정보 변경
 * 영상 업로드
 * 영상 검색
+* 영상 삭제
 * 영상 재생
 * 영상 녹화
 * 영상 조회수 업데이트
@@ -46,3 +47,5 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * 카카오톡 연동 추가
 * URL 주소 const로 관리
 * FlashMessage const로 관리
+* Video player 영상 시간 버그 수정
+* Video Player seconds 표시 수정
