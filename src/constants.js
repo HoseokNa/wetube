@@ -1,6 +1,6 @@
 export const url = {
   LOCAL_URL: "http://localhost:4000",
-  PRODUCT_URL: "https://ho-wetube.herokuapp.com/"
+  PRODUCT_URL: "https://ho-wetube.herokuapp.com"
 };
 
 export const flashMessage = {
