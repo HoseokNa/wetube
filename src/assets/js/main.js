@@ -1,6 +1,6 @@
 import "../scss/styles.scss";
 import VideoPlayer from "./VideoPlayer";
-import "./videoRecorder";
+import VideoRecorder from "./VideoRecorder";
 import "./addComment";
 
 const videoPlayer = new VideoPlayer({
@@ -18,5 +18,14 @@ const videoPlayer = new VideoPlayer({
     totalTime: "00:00:00",
     playButton: `<i class="fas fa-play"></i>`,
     fullScreenButton: `<i class="fas fa-expand"></i>`
+  }
+});
+
+const videoRecorder = new VideoRecorder({
+  $targetRecorderContainer: document.getElementById("jsRecordContainer"),
+  $targetRecordButton: document.getElementById("jsRecordBtn"),
+  $targetVideoPreview: document.getElementById("jsVideoPreview"),
+  data: {
+    recordButton: "Start Recording"
   }
 });
