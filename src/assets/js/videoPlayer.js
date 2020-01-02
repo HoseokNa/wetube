@@ -1,14 +1,16 @@
 import getBlobDuration from "get-blob-duration";
 
 export default function VideoPlayer(params) {
-  const { $targetVideoContainer } = params;
-  const { $targetVideoPlayer } = params;
-  const { $targetPlayButton } = params;
-  const { $targetVolumeButton } = params;
-  const { $targetFullScreenButton } = params;
-  const { $targetCurrentTime } = params;
-  const { $targetTotalTime } = params;
-  const { $targetVolumeRange } = params;
+  const {
+    $targetVideoContainer,
+    $targetVideoPlayer,
+    $targetPlayButton,
+    $targetVolumeButton,
+    $targetFullScreenButton,
+    $targetCurrentTime,
+    $targetTotalTime,
+    $targetVolumeRange
+  } = params;
   let data = params.data || {};
 
   this.onClickPlay = () => {
@@ -36,7 +38,7 @@ export default function VideoPlayer(params) {
   };
 
   this.onClickFullScreen = () => {
-    console.log("full screen")
+    console.log("full screen");
     if ($targetVideoContainer.requestFullscreen) {
       $targetVideoContainer.requestFullscreen();
     } else if ($targetVideoContainer.mozRequestFullScreen) {
@@ -75,7 +77,7 @@ export default function VideoPlayer(params) {
 
   this.onEnded = () => {
     // Todo count views
-    //registerView(); 
+    //registerView();
     $targetVideoPlayer.currentTime = 0;
     data.playButton = '<i class="fas fa-play"></i>';
     this.render();
