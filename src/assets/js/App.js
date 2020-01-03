@@ -20,6 +20,11 @@ export default function App() {
           totalTime: "00:00:00",
           playButton: `<i class="fas fa-play"></i>`,
           fullScreenButton: `<i class="fas fa-expand"></i>`
+        },
+        plusViewCounts: (videoId) => {
+          fetch(`/api/${videoId}/view`, {
+            method: "POST"
+          });
         }
       })
     : null;

@@ -9,7 +9,8 @@ export default function VideoPlayer(params) {
     $targetFullScreenButton,
     $targetCurrentTime,
     $targetTotalTime,
-    $targetVolumeRange
+    $targetVolumeRange,
+    plusViewCounts
   } = params;
   let data = params.data || {};
 
@@ -74,11 +75,15 @@ export default function VideoPlayer(params) {
     this.render();
   };
 
-  this.onEnded = () => {
-    // Todo count views
-    //registerView();
+  this.onEnded = async () => {
     $targetVideoPlayer.currentTime = 0;
     data.playButton = '<i class="fas fa-play"></i>';
+
+    const videoId = window.location.href.split("/videos/")[1];
+    const response = await plusViewCounts(videoId)
+
+    // todo refresh view counts
+    
     this.render();
   };
 
