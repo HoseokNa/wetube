@@ -38,7 +38,6 @@ export default function VideoPlayer(params) {
   };
 
   this.onClickFullScreen = () => {
-    console.log("full screen");
     if ($targetVideoContainer.requestFullscreen) {
       $targetVideoContainer.requestFullscreen();
     } else if ($targetVideoContainer.mozRequestFullScreen) {
