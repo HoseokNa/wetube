@@ -47,6 +47,7 @@ export default function App() {
         $targetCommentNumber: document.getElementById("jsCommentNumber"),
         data: {
           comment: "",
+          deletedCommentIndex: -1,
           commentNumber: parseInt(
             document.getElementById("jsCommentNumber").innerHTML,
             10

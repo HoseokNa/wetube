@@ -8,6 +8,33 @@ export default function Comment(params) {
   } = params;
   let data = params.data || {};
 
+  this.deleteComment = async (index) => {
+    const videoId = window.location.href.split("/videos/")[1];
+    const response = await axios({
+      url: `/api/delete/${videoId}/comment`,
+      method: "POST",
+      data: {
+        index
+      }
+    });
+    if (response.status === 200) {
+      data.commentNumber -= 1;
+      data.deletedCommentIndex = index;
+      console.log(index)
+      console.log(data.deletedCommentIndex)
+      this.render()
+    }
+  }
+
+  $targetCommentList.addEventListener("click", e => {
+    const { index } = e.target.closest('li').dataset
+
+    if (e.target.className === 'comment__remove') {
+      e.stopPropagation()
+      this.deleteComment(index)
+    }
+  })
+
   this.increaseNumber = () => {
     (data.commentNumber += 1)
   };
@@ -39,6 +66,9 @@ export default function Comment(params) {
 
   this.render = () => {
     $targetCommentNumber.innerHTML = data.commentNumber
+    if(data.deletedCommentIndex !== -1){
+      $targetCommentList.removeChild($targetCommentList.childNodes[data.deletedCommentIndex]) 
+    }
     if(data.comment.length > 0){
       const li = document.createElement("li");
       const span = document.createElement("span");
