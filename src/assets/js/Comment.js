@@ -20,8 +20,6 @@ export default function Comment(params) {
     if (response.status === 200) {
       data.commentNumber -= 1;
       data.deletedCommentIndex = index;
-      console.log(index);
-      console.log(data.deletedCommentIndex);
       this.render();
     }
   };
