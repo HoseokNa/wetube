@@ -23,6 +23,7 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * 영상 녹화
 * 영상 조회수 업데이트
 * 댓글 등록
+* 댓글 삭제
 * Flash Message로 알림
 
 ## 학습 내용
@@ -49,3 +50,5 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * FlashMessage const로 관리
 * Video player 영상 시간 버그 수정
 * Video Player seconds 표시 수정
+* Component로 분리해보기
+* 댓글 삭제 기능 추가
