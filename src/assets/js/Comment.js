@@ -8,7 +8,7 @@ export default function Comment(params) {
   } = params;
   let data = params.data || {};
 
-  this.deleteComment = async (index) => {
+  this.deleteComment = async index => {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await axios({
       url: `/api/delete/${videoId}/comment`,
@@ -20,29 +20,29 @@ export default function Comment(params) {
     if (response.status === 200) {
       data.commentNumber -= 1;
       data.deletedCommentIndex = index;
-      console.log(index)
-      console.log(data.deletedCommentIndex)
-      this.render()
+      console.log(index);
+      console.log(data.deletedCommentIndex);
+      this.render();
     }
-  }
+  };
 
   $targetCommentList.addEventListener("click", e => {
-    const { index } = e.target.closest('li').dataset
+    const { index } = e.target.closest("li").dataset;
 
-    if (e.target.className === 'comment__remove') {
-      e.stopPropagation()
-      this.deleteComment(index)
+    if (e.target.className === "comment__remove") {
+      e.stopPropagation();
+      this.deleteComment(index);
     }
-  })
+  });
 
   this.increaseNumber = () => {
-    (data.commentNumber += 1)
+    data.commentNumber += 1;
   };
 
   this.addComment = comment => {
-    data.comment = comment
+    data.comment = comment;
     this.increaseNumber();
-    this.render()
+    this.render();
   };
 
   this.sendComment = async comment => {
@@ -60,25 +60,31 @@ export default function Comment(params) {
   };
 
   this.setState = nextData => {
-    data = nextData
+    data = nextData;
     this.render();
-  }
+  };
 
   this.render = () => {
-    $targetCommentNumber.innerHTML = data.commentNumber
-    if(data.deletedCommentIndex !== -1){
-      $targetCommentList.removeChild($targetCommentList.childNodes[data.deletedCommentIndex]) 
+    $targetCommentNumber.innerHTML = data.commentNumber;
+    if (data.deletedCommentIndex !== -1) {
+      $targetCommentList.removeChild(
+        $targetCommentList.childNodes[data.deletedCommentIndex]
+      );
     }
-    if(data.comment.length > 0){
+    if (data.comment.length > 0) {
       const li = document.createElement("li");
       const span = document.createElement("span");
       span.innerHTML = data.comment;
+      const removeButton = document.createElement("button");
+      removeButton.className = "comment__remove"
+      removeButton.innerHTML = "❌";
       li.appendChild(span);
+      li.appendChild(removeButton);
       $targetCommentList.prepend(li);
     }
-  }
+  };
 
   if ($targetCommentForm) {
-    this.render()
+    this.render();
   }
 }
