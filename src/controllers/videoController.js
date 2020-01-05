@@ -121,6 +121,21 @@ export const postRegisterView = async (req, res) => {
   }
 };
 
+export const getComments = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  let comments = null;
+  try {
+    const video = await Video.findById(id).populate("comments");
+    comments = video.comments
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.json(comments.reverse())
+  }
+};
+
 export const postAddComment = async (req, res) => {
   const {
     params: { id },

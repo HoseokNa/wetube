@@ -8,6 +8,15 @@ export default function Comment(params) {
   } = params;
   let data = params.data || {};
 
+  this.getComments = async () => {
+    const videoId = window.location.href.split("/videos/")[1];
+    const response = await axios({
+      url: `/api/${videoId}/comment`,
+      method: "GET"
+    });
+    data.comments = JSON.parse(response.request.response);
+  };
+
   this.deleteComment = async index => {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await axios({
@@ -18,8 +27,7 @@ export default function Comment(params) {
       }
     });
     if (response.status === 200) {
-      data.commentNumber -= 1;
-      data.deletedCommentIndex = index;
+      await this.getComments();
       this.render();
     }
   };
@@ -33,16 +41,6 @@ export default function Comment(params) {
     }
   });
 
-  this.increaseNumber = () => {
-    data.commentNumber += 1;
-  };
-
-  this.addComment = comment => {
-    data.comment = comment;
-    this.increaseNumber();
-    this.render();
-  };
-
   this.sendComment = async comment => {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await axios({
@@ -53,7 +51,8 @@ export default function Comment(params) {
       }
     });
     if (response.status === 200) {
-      this.addComment(comment);
+      await this.getComments()
+      this.render();
     }
   };
 
@@ -63,22 +62,14 @@ export default function Comment(params) {
   };
 
   this.render = () => {
-    $targetCommentNumber.innerHTML = data.commentNumber;
-    if (data.deletedCommentIndex !== -1) {
-      $targetCommentList.removeChild(
-        $targetCommentList.childNodes[data.deletedCommentIndex]
-      );
-    }
-    if (data.comment.length > 0) {
-      const li = document.createElement("li");
-      const span = document.createElement("span");
-      span.innerHTML = data.comment;
-      const removeButton = document.createElement("button");
-      removeButton.className = "comment__remove"
-      removeButton.innerHTML = "❌";
-      li.appendChild(span);
-      li.appendChild(removeButton);
-      $targetCommentList.prepend(li);
+    if (data.comments) {
+      $targetCommentNumber.innerHTML = data.comments.length;
+      $targetCommentList.innerHTML = data.comments
+        .map(
+          comment =>
+            `<li><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
+        )
+        .join("");
     }
   };
 

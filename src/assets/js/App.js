@@ -44,15 +44,7 @@ export default function App() {
     ? new Comment({
         $targetCommentForm: document.getElementById("jsAddComment"),
         $targetCommentList: document.getElementById("jsCommentList"),
-        $targetCommentNumber: document.getElementById("jsCommentNumber"),
-        data: {
-          comment: "",
-          deletedCommentIndex: -1,
-          commentNumber: parseInt(
-            document.getElementById("jsCommentNumber").innerHTML,
-            10
-          )
-        }
+        $targetCommentNumber: document.getElementById("jsCommentNumber")
       })
     : null;
 
