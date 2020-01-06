@@ -66,8 +66,8 @@ export default function Comment(params) {
       $targetCommentNumber.innerHTML = data.comments.length;
       $targetCommentList.innerHTML = data.comments
         .map(
-          comment =>
-            `<li><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
+          (comment, index) =>
+            `<li data-index=${index}><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
         )
         .join("");
     }
