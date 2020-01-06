@@ -20,11 +20,8 @@ export default function Comment(params) {
   this.deleteComment = async index => {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await axios({
-      url: `/api/delete/${videoId}/comment`,
-      method: "POST",
-      data: {
-        index
-      }
+      url: `/api/${videoId}/comment/${index}`,
+      method: "DELETE",
     });
     if (response.status === 200) {
       await this.getComments();

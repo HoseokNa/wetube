@@ -157,10 +157,9 @@ export const postAddComment = async (req, res) => {
   }
 };
 
-export const postDeleteComment = async (req, res) => {
+export const deleteComment = async (req, res) => {
   const {
-    params: { id },
-    body: { index }
+    params: { id, index },
   } = req;
   try {
     const video = await Video.findById(id);
