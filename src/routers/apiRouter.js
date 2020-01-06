@@ -10,8 +10,8 @@ import {
 const apiRouter = express.Router();
 
 apiRouter.post(routes.registerView, postRegisterView);
-apiRouter.post(routes.addComment, postAddComment);
+apiRouter.post(routes.comment, postAddComment);
 apiRouter.post(routes.deleteComment, postDeleteComment);
-apiRouter.get(routes.addComment, getComments);
+apiRouter.get(routes.comment, getComments);
 
 export default apiRouter;
