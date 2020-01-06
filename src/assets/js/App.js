@@ -54,7 +54,8 @@ export default function App(params) {
   const commentInput = document.getElementById("jsAddComment")
     ? new CommentInput({
         $target: document.getElementById("jsAddComment").querySelector("input"),
-        sendComment: comment.sendComment
+        sendComment: comment.sendComment,
+        loggedUserId : params.loggedUserId
       })
     : null;
 
