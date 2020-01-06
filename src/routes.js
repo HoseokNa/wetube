@@ -42,6 +42,8 @@ const API = "/api";
 const REGISTER_VIEW = "/:id/view";
 const COMMENT = "/:id/comment";
 const CERTAIN_COMMENT = "/:id/comment/:index"
+const LOGGED_USER = "/user/logged"
+
 
 const routes = {
   home: HOME,
@@ -92,7 +94,8 @@ const routes = {
   api: API,
   registerView: REGISTER_VIEW,
   comment: COMMENT,
-  certainComment: CERTAIN_COMMENT
+  certainComment: CERTAIN_COMMENT,
+  loggedUser: LOGGED_USER
 };
 
 export default routes;

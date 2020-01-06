@@ -34,4 +34,5 @@ block content
         each comment, index in video.comments.reverse()
           li(data-index=index)
             span #{comment.text}
-            button.comment__remove ❌
+            if loggedUser && comment.creator == loggedUser.id
+              button.comment__remove ❌

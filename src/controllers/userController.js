@@ -172,6 +172,10 @@ export const userDetail = async (req, res) => {
   }
 };
 
+export const getLoggedUser = async (req, res) => {
+  res.json(req.user);
+}
+
 export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 

@@ -3,7 +3,7 @@ import VideoRecorder from "./VideoRecorder";
 import Comment from "./Comment";
 import CommentInput from "./CommentInput";
 
-export default function App() {
+export default function App(params) {
   const videoPlayer = document.getElementById("jsVideoPlayer")
     ? new VideoPlayer({
         $targetVideoContainer: document.getElementById("jsVideoPlayer"),
@@ -44,7 +44,10 @@ export default function App() {
     ? new Comment({
         $targetCommentForm: document.getElementById("jsAddComment"),
         $targetCommentList: document.getElementById("jsCommentList"),
-        $targetCommentNumber: document.getElementById("jsCommentNumber")
+        $targetCommentNumber: document.getElementById("jsCommentNumber"),
+        data: {
+          loggedUserId : params.loggedUserId
+        }
       })
     : null;
 

@@ -14,14 +14,14 @@ export default function Comment(params) {
       url: `/api/${videoId}/comment`,
       method: "GET"
     });
-    data.comments = JSON.parse(response.request.response);
+    data.comments = response.data;
   };
 
   this.deleteComment = async index => {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await axios({
       url: `/api/${videoId}/comment/${index}`,
-      method: "DELETE",
+      method: "DELETE"
     });
     if (response.status === 200) {
       await this.getComments();
@@ -48,7 +48,7 @@ export default function Comment(params) {
       }
     });
     if (response.status === 200) {
-      await this.getComments()
+      await this.getComments();
       this.render();
     }
   };
@@ -62,10 +62,13 @@ export default function Comment(params) {
     if (data.comments) {
       $targetCommentNumber.innerHTML = data.comments.length;
       $targetCommentList.innerHTML = data.comments
-        .map(
-          (comment, index) =>
-            `<li data-index=${index}><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
-        )
+        .map((comment, index) => {
+          const htmlString =
+            data.loggedUserId === comment.creator
+              ? `<li data-index=${index}><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
+              : `<li data-index=${index}><span>${comment.text}</span>`;
+          return htmlString;
+        })
         .join("");
     }
   };
