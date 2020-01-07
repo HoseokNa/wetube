@@ -80,9 +80,7 @@ export default function VideoPlayer(params) {
     data.playButton = '<i class="fas fa-play"></i>';
 
     const videoId = window.location.href.split("/videos/")[1];
-    const response = await plusViewCounts(videoId)
-
-    // todo refresh view counts
+    await plusViewCounts(videoId)
     
     this.render();
   };

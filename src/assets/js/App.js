@@ -2,6 +2,7 @@ import VideoPlayer from "./VideoPlayer";
 import VideoRecorder from "./VideoRecorder";
 import Comment from "./Comment";
 import CommentInput from "./CommentInput";
+import { api } from "./api";
 
 export default function App(params) {
   const videoPlayer = document.getElementById("jsVideoPlayer")
@@ -21,11 +22,7 @@ export default function App(params) {
           playButton: `<i class="fas fa-play"></i>`,
           fullScreenButton: `<i class="fas fa-expand"></i>`
         },
-        plusViewCounts: (videoId) => {
-          fetch(`/api/${videoId}/view`, {
-            method: "POST"
-          });
-        }
+        plusViewCounts: api.postView
       })
     : null;
 
@@ -45,8 +42,9 @@ export default function App(params) {
         $targetCommentForm: document.getElementById("jsAddComment"),
         $targetCommentList: document.getElementById("jsCommentList"),
         $targetCommentNumber: document.getElementById("jsCommentNumber"),
+        api,
         data: {
-          loggedUserId : params.loggedUserId
+          loggedUserId: params.loggedUserId
         }
       })
     : null;
@@ -55,7 +53,7 @@ export default function App(params) {
     ? new CommentInput({
         $target: document.getElementById("jsAddComment").querySelector("input"),
         sendComment: comment.sendComment,
-        loggedUserId : params.loggedUserId
+        loggedUserId: params.loggedUserId
       })
     : null;
 

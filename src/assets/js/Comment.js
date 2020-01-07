@@ -1,28 +1,21 @@
-import axios from "axios";
-
 export default function Comment(params) {
   const {
     $targetCommentForm,
     $targetCommentList,
-    $targetCommentNumber
+    $targetCommentNumber,
+    api
   } = params;
   let data = params.data || {};
 
   this.getComments = async () => {
     const videoId = window.location.href.split("/videos/")[1];
-    const response = await axios({
-      url: `/api/${videoId}/comment`,
-      method: "GET"
-    });
+    const response = await api.getComments(videoId);
     data.comments = response.data;
   };
 
   this.deleteComment = async index => {
     const videoId = window.location.href.split("/videos/")[1];
-    const response = await axios({
-      url: `/api/${videoId}/comment/${index}`,
-      method: "DELETE"
-    });
+    const response = await api.deleteComment(videoId, index);
     if (response.status === 200) {
       await this.getComments();
       this.render();
@@ -40,13 +33,7 @@ export default function Comment(params) {
 
   this.sendComment = async comment => {
     const videoId = window.location.href.split("/videos/")[1];
-    const response = await axios({
-      url: `/api/${videoId}/comment`,
-      method: "POST",
-      data: {
-        comment
-      }
-    });
+    const response = await api.postComment(videoId, { comment });
     if (response.status === 200) {
       await this.getComments();
       this.render();
