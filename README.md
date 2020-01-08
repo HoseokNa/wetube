@@ -53,3 +53,4 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * Component로 분리해보기
 * 댓글 삭제 기능 추가
 * Axios 통신 부분 api.js로 분리
+* 댓글에 프로필 사진과 사용자 이름 표시
