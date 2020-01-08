@@ -33,6 +33,9 @@ block content
       ul.video__comments-list#jsCommentList
         each comment, index in video.comments.reverse()
           li(data-index=index)
-            span #{comment.text}
-            if loggedUser && comment.creator == loggedUser.id
+            img.comment__avatarUrl(src=comment.creator.avatarUrl)
+            .comment__contents
+              .contents__creator=comment.creator.name
+              .contents__text=comment.text
+            if loggedUser && comment.creator.id == loggedUser.id
               button.comment__remove ❌

@@ -33,6 +33,7 @@
     }
   }
   .video__comments {
+    width: 70%;
     margin-top: 25px;
     text-align: center;
     .video__comment-number {
@@ -47,19 +48,37 @@
     }
     .video__comments-list {
       margin-top: 50px;
+      text-align: justify;
       li {
         display:flex;
-        justify-content: space-between;
-        background-color: #3498db;
-        color: white;
+        //justify-content: space-between;
+        //background-color: #3498db;
+        color: black;
         padding: 15px;
         border-radius: 20px;
         border-bottom-left-radius: 0px;
         &:not(:last-child) {
           margin-bottom: 15px;
         }
+        .comment__avatarUrl {
+          width: 5%;
+          margin-right: 10px;
+          height:45px;
+          border-radius: 50%;
+        }
+        .comment__contents{
+          width: 85%;
+          height:80px;
+          .contents__creator{
+            margin-bottom: 10px;
+            font-size: 14px
+          }
+          .contents__text{
+            font-size: 18px
+          }
+        }
         .comment__remove {
-          width: 20%;
+          width: 10%;
         }
       }
     }

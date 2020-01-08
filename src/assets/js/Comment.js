@@ -51,9 +51,9 @@ export default function Comment(params) {
       $targetCommentList.innerHTML = data.comments
         .map((comment, index) => {
           const htmlString =
-            data.loggedUserId === comment.creator
-              ? `<li data-index=${index}><span>${comment.text}</span><button class="comment__remove">❌</button></li>`
-              : `<li data-index=${index}><span>${comment.text}</span>`;
+            data.loggedUserId === comment.creator._id
+              ? `<li data-index=${index}><img class="comment__avatarUrl" src=${comment.creator.avatarUrl}><div class="comment__contents"><div class="contents__creator">${comment.creator.name}</div><div class="contents__text">${comment.text}</div></div><button class="comment__remove">❌</button></li>`
+              : `<li data-index=${index}><img class="comment__avatarUrl" src=${comment.creator.avatarUrl}><div class="comment__contents"><div class="contents__creator">${comment.creator.name}</div><div class="contents__text">${comment.text}</div></div>`;
           return htmlString;
         })
         .join("");
