@@ -50,13 +50,16 @@ export const videoDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id).populate({
-      path: "comments",
-      populate: {
-        model: "User",
-        path: "creator"
-      }
-    });
+    const video = await Video.findById(id)
+      .populate("creator")
+      .populate({
+        path: "comments",
+        populate: {
+          model: "User",
+          path: "creator"
+        }
+      });
+    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -127,7 +130,7 @@ export const postRegisterView = async (req, res) => {
 
 export const getComments = async (req, res) => {
   const {
-    params: { id },
+    params: { id }
   } = req;
   let comments = null;
   try {
@@ -138,11 +141,11 @@ export const getComments = async (req, res) => {
         path: "creator"
       }
     });
-    comments = video.comments
+    comments = video.comments;
   } catch (error) {
     res.status(400);
   } finally {
-    res.json(comments.reverse())
+    res.json(comments.reverse());
   }
 };
 
@@ -169,7 +172,7 @@ export const postAddComment = async (req, res) => {
 
 export const deleteComment = async (req, res) => {
   const {
-    params: { id, index },
+    params: { id, index }
   } = req;
   try {
     const video = await Video.findById(id);
