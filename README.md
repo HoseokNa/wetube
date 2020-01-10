@@ -54,3 +54,4 @@ NodeJS, VanillaJS, MongoDB, Heroku
 * 댓글 삭제 기능 추가
 * Axios 통신 부분 api.js로 분리
 * 댓글에 프로필 사진과 사용자 이름 표시
+* Video player에 progress bar 추가
