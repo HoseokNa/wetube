@@ -10,6 +10,7 @@ export default function VideoPlayer(params) {
     $targetCurrentTime,
     $targetTotalTime,
     $targetVolumeRange,
+    $targetProgressBar,
     plusViewCounts
   } = params;
   let data = params.data || {};
@@ -80,8 +81,8 @@ export default function VideoPlayer(params) {
     data.playButton = '<i class="fas fa-play"></i>';
 
     const videoId = window.location.href.split("/videos/")[1];
-    await plusViewCounts(videoId)
-    
+    await plusViewCounts(videoId);
+
     this.render();
   };
 
@@ -122,6 +123,7 @@ export default function VideoPlayer(params) {
     data.currentTime = this.formatDate(
       Math.floor($targetVideoPlayer.currentTime)
     );
+    data.progressBarValue = $targetVideoPlayer.currentTime / $targetVideoPlayer.duration;
     this.render();
   };
 
@@ -132,6 +134,14 @@ export default function VideoPlayer(params) {
     setInterval(this.setCurrentTime, 1000);
   };
 
+  this.onClickProgreesBar = e => {
+    const {
+      target: { value }
+    } = e;
+    console.log(value);
+    $targetVideoPlayer.currentTime = $targetVideoPlayer.duration * value;
+  };
+
   this.init = () => {
     $targetVideoPlayer.volume = 0.5;
     $targetPlayButton.addEventListener("click", this.onClickPlay);
@@ -139,6 +149,7 @@ export default function VideoPlayer(params) {
     $targetFullScreenButton.addEventListener("click", this.onClickFullScreen);
     $targetVideoPlayer.addEventListener("ended", this.onEnded);
     $targetVolumeRange.addEventListener("input", this.onDragVolume);
+    $targetProgressBar.addEventListener("click", this.onClickProgreesBar);
 
     const timer = setInterval(() => {
       if ($targetVideoPlayer.readyState >= 2) {
@@ -159,6 +170,7 @@ export default function VideoPlayer(params) {
     $targetTotalTime.innerHTML = data.totalTime;
     $targetPlayButton.innerHTML = data.playButton;
     $targetFullScreenButton.innerHTML = data.fullScreenButton;
+    $targetProgressBar.value = data.progressBarValue;
   };
 
   if ($targetVideoContainer) {

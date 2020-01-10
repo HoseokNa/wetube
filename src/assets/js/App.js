@@ -15,12 +15,14 @@ export default function App(params) {
         $targetCurrentTime: document.getElementById("currentTime"),
         $targetTotalTime: document.getElementById("totalTime"),
         $targetVolumeRange: document.getElementById("jsVolume"),
+        $targetProgressBar: document.getElementById("jsProgressBar"),
         data: {
           volumeButton: `<i class="fas fa-volume-up"></i>`,
           currentTime: "00:00:00",
           totalTime: "00:00:00",
           playButton: `<i class="fas fa-play"></i>`,
-          fullScreenButton: `<i class="fas fa-expand"></i>`
+          fullScreenButton: `<i class="fas fa-expand"></i>`,
+          progressBar: 0
         },
         plusViewCounts: api.postView
       })
