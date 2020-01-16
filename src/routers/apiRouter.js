@@ -4,6 +4,7 @@ import {getLoggedUser} from "../controllers/userController";
 import {
   postRegisterView,
   postAddComment,
+  postAddReComment,
   deleteComment,
   getComments
 } from "../controllers/videoController";
@@ -14,8 +15,9 @@ apiRouter.get(routes.loggedUser, getLoggedUser)
 apiRouter.get(routes.comment, getComments);
 
 apiRouter.post(routes.registerView, postRegisterView);
-apiRouter.post(routes.comment, postAddComment)
-;
+apiRouter.post(routes.comment, postAddComment);
+apiRouter.post(routes.recomment, postAddReComment);
+
 apiRouter.delete(routes.certainComment, deleteComment);
 
 export default apiRouter;

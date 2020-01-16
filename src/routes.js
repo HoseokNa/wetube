@@ -42,6 +42,7 @@ const API = "/api";
 const REGISTER_VIEW = "/:id/view";
 const COMMENT = "/:id/comment";
 const CERTAIN_COMMENT = "/:id/comment/:index"
+const RECOMMENT = "/:id/RECOMMENT/"
 const LOGGED_USER = "/user/logged"
 
 
@@ -95,6 +96,7 @@ const routes = {
   registerView: REGISTER_VIEW,
   comment: COMMENT,
   certainComment: CERTAIN_COMMENT,
+  recomment: RECOMMENT,
   loggedUser: LOGGED_USER
 };
 

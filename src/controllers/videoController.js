@@ -170,6 +170,27 @@ export const postAddComment = async (req, res) => {
   }
 };
 
+export const postAddReComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { reComment },
+    user
+  } = req;
+  try {
+    const comment = await Comment.findById(id);
+    const newReComment = await Comment.create({
+      text: reComment,
+      creator: user.id
+    });
+    comment.reComment.push(newReComment.id);
+    comment.save();
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
 export const deleteComment = async (req, res) => {
   const {
     params: { id, index }
