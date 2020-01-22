@@ -7,12 +7,12 @@ export const reCommentTemplate = (loggedUserId, reComment, index) => {
         <div class="comment__contents">
           <div class="contents__creator">${reComment.creator.name}</div>
           <div class="contents__text">${reComment.text}</div>
-          ${
-            loggedUserId === reComment.creator._id
-              ? `<button class="comment__remove">❌</button>`
-              : ``
-          }
         </div>
+        ${
+          loggedUserId === reComment.creator._id
+            ? `<button class="comment__remove">❌</button>`
+            : ``
+        }
       </div>
     </li>`;
 
