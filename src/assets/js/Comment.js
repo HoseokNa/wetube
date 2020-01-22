@@ -1,3 +1,5 @@
+import { commentTemplate } from "./utils.js/template";
+
 export default function Comment(params) {
   const {
     $targetCommentForm,
@@ -33,11 +35,32 @@ export default function Comment(params) {
 
     if (e.target.className === "recomment-request") {
       e.stopPropagation();
-      console.log(e)
-      console.log(e.toElement.parentElement.parentElement.lastChild)
-      e.toElement.parentElement.parentElement.lastChild.style.display = 'block'
+      if(e.toElement.parentElement.parentElement.children[2].style.display === "block"){
+        e.toElement.parentElement.parentElement.children[2].style.display = "none"
+      } else {
+        e.toElement.parentElement.parentElement.children[2].style.display = "block";
+      }
     }
   });
+
+  $targetCommentList.addEventListener("keydown", e => {
+    if (e.target.className === "comment__input") {
+      if (e.key === "Enter") {
+        const { index } = e.path[1].dataset;
+        this.sendReComment(e.target.value, index);
+      }
+    }
+  });
+
+  this.sendReComment = async (reComment, index) => {
+    const commentId = data.comments[index]._id;
+    console.log(commentId);
+    const response = await api.postReComment(commentId, { reComment });
+    if (response.status === 200) {
+      await this.getComments();
+      this.render();
+    }
+  };
 
   this.sendComment = async comment => {
     const videoId = window.location.href.split("/videos/")[1];
@@ -58,11 +81,7 @@ export default function Comment(params) {
       $targetCommentNumber.innerHTML = data.comments.length;
       $targetCommentList.innerHTML = data.comments
         .map((comment, index) => {
-          const htmlString =
-            data.loggedUserId === comment.creator._id
-              ? `<li data-index=${index}><div class="comment__main"><img class="comment__avatarUrl" src=${comment.creator.avatarUrl}><div class="comment__contents"><div class="contents__creator">${comment.creator.name}</div><div class="contents__text">${comment.text}</div></div><button class="comment__remove">❌</button></div><div class="comment__footer"><span class="recomment-request">답글</span></div><input class="comment__input" type="text" /></li>`
-              : `<li data-index=${index}><div class="comment__main"><img class="comment__avatarUrl" src=${comment.creator.avatarUrl}><div class="comment__contents"><div class="contents__creator">${comment.creator.name}</div><div class="contents__text">${comment.text}</div></div></div><div class="comment__footer"><span class="recomment-request">답글</span></div><input class="comment__input" type="text" /></li>`;
-          return htmlString;
+          return commentTemplate(data.loggedUserId, comment, index);
         })
         .join("");
     }

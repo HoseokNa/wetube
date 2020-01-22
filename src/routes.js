@@ -42,7 +42,7 @@ const API = "/api";
 const REGISTER_VIEW = "/:id/view";
 const COMMENT = "/:id/comment";
 const CERTAIN_COMMENT = "/:id/comment/:index"
-const RECOMMENT = "/:id/RECOMMENT/"
+const RECOMMENT = "/:id/recomment"
 const LOGGED_USER = "/user/logged"
 
 

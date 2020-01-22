@@ -85,5 +85,10 @@ export default function App(params) {
     }
   };
 
-  this.render();
+  (async () => {
+    if(comment){
+      await comment.getComments();
+      this.render();
+    }
+  })();
 }

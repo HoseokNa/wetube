@@ -94,6 +94,17 @@
         }
         .comment__input {
           display:none;
+          margin-top: 2%;
+        }
+        .comment__reComment{
+          padding: 0;
+          margin-left: 5%;
+          li {
+            margin: 0;
+          }
+          li:last-child{
+            padding-bottom: 0;
+          }
         }
       }
     }

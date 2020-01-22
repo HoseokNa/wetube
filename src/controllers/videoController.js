@@ -134,11 +134,23 @@ export const getComments = async (req, res) => {
   } = req;
   let comments = null;
   try {
-    const video = await Video.findById(id).populate({
+    const video = await Video.findById(id)
+    .populate({
       path: "comments",
       populate: {
         model: "User",
         path: "creator"
+      }
+    })
+    .populate({
+      path: "comments",
+      populate: {
+        model: "Comment",
+        path: "reComment",
+        populate: {
+          model: "User",
+          path: "creator"
+        }
       }
     });
     comments = video.comments;
@@ -177,6 +189,7 @@ export const postAddReComment = async (req, res) => {
     user
   } = req;
   try {
+    console.log("start recoment");
     const comment = await Comment.findById(id);
     const newReComment = await Comment.create({
       text: reComment,
