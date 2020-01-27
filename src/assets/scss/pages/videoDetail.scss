@@ -84,7 +84,7 @@
             }
           }
           .comment__remove {
-            width: 10%;
+            width: 4em;
           }
         }
         .comment__footer{
@@ -104,6 +104,9 @@
           li {
             padding: 15px 0px 0px 0px;
             margin: 0;
+            .reComment__remove{
+              width: 4em;
+            }
           }
         }
       }

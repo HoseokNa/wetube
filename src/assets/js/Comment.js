@@ -25,12 +25,28 @@ export default function Comment(params) {
     }
   };
 
+  this.deleteReComment = async (index, reCommentIndex) => {
+    const commentId = data.comments[index]._id;
+    const response = await api.deleteReComment(commentId, reCommentIndex);
+    if (response.status === 200) {
+      await this.getComments();
+      this.render();
+    }
+  };
+
   $targetCommentList.addEventListener("click", e => {
-    const { index } = e.target.closest("li").dataset;
+    const { index } = e.target.closest(".comment__li").dataset;
 
     if (e.target.className === "comment__remove") {
       e.stopPropagation();
       this.deleteComment(index);
+    }
+
+    if (e.target.className === "reComment__remove") {
+      const reCommentIndex = e.target.closest(".reComment__li").dataset.index;
+      console.log(reCommentIndex);
+      e.stopPropagation();
+      this.deleteReComment(index, reCommentIndex);
     }
 
     if (e.target.className === "recomment-request") {

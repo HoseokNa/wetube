@@ -1,7 +1,7 @@
 export const reCommentTemplate = (loggedUserId, reComment, index) => {
   console.log(reComment);
   const reCommentHTML = `
-    <li data-index=${index}>
+    <li class="reComment__li" data-index=${index}>
       <div class="comment__main">
         <img class="comment__avatarUrl" src=${reComment.creator.avatarUrl}>
         <div class="comment__contents">
@@ -10,7 +10,7 @@ export const reCommentTemplate = (loggedUserId, reComment, index) => {
         </div>
         ${
           loggedUserId === reComment.creator._id
-            ? `<button class="comment__remove">❌</button>`
+            ? `<button class="reComment__remove">❌</button>`
             : ``
         }
       </div>
@@ -27,7 +27,7 @@ export const commentTemplate = (loggedUserId, comment, index) => {
     .join("")}</ul>`;
 
   const commentHTML = `
-      <li data-index=${index}>
+      <li class="comment__li" data-index=${index}>
         <div class="comment__main">
           <img class="comment__avatarUrl" src=${comment.creator.avatarUrl}>
           <div class="comment__contents">

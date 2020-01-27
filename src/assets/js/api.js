@@ -22,6 +22,7 @@ export const api = {
   postComment: async (videoId, data) => request(`/api/${videoId}/comment`, "POST", data),
   deleteComment: async (videoId, index) => request(`/api/${videoId}/comment/${index}`, "DELETE"),
   postReComment: async (commentId, reComment) => request(`/api/${commentId}/recomment`, "POST", reComment),
+  deleteReComment: async (commentId, index) => request(`/api/${commentId}/recomment/${index}`, "DELETE"),
   // View
   postView: async videoId => request(`/api/${videoId}/view`, "POST")
 };

@@ -223,3 +223,20 @@ export const deleteComment = async (req, res) => {
     res.end();
   }
 };
+
+export const deleteReComment = async (req, res) => {
+  const {
+    params: { id, index }
+  } = req;
+  try {
+    const comment = await Comment.findById(id);
+    await Comment.findByIdAndDelete(comment.reComment[index], err => {
+        if (err) throw err;
+        comment.save();
+      });
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};

@@ -6,7 +6,8 @@ import {
   postAddComment,
   postAddReComment,
   deleteComment,
-  getComments
+  getComments,
+  deleteReComment
 } from "../controllers/videoController";
 
 const apiRouter = express.Router();
@@ -19,5 +20,6 @@ apiRouter.post(routes.comment, postAddComment);
 apiRouter.post(routes.recomment, postAddReComment);
 
 apiRouter.delete(routes.certainComment, deleteComment);
+apiRouter.delete(routes.certainReComment, deleteReComment);
 
 export default apiRouter;

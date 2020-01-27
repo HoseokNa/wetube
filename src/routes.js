@@ -43,6 +43,7 @@ const REGISTER_VIEW = "/:id/view";
 const COMMENT = "/:id/comment";
 const CERTAIN_COMMENT = "/:id/comment/:index"
 const RECOMMENT = "/:id/recomment"
+const CERTAIN_RECOMMENT = "/:id/recomment/:index"
 const LOGGED_USER = "/user/logged"
 
 
@@ -97,6 +98,7 @@ const routes = {
   comment: COMMENT,
   certainComment: CERTAIN_COMMENT,
   recomment: RECOMMENT,
+  certainReComment: CERTAIN_RECOMMENT,
   loggedUser: LOGGED_USER
 };
 
