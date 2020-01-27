@@ -13,7 +13,6 @@ export default function Comment(params) {
     const videoId = window.location.href.split("/videos/")[1];
     const response = await api.getComments(videoId);
     data.comments = response.data;
-    console.log(data.comments);
   };
 
   this.deleteComment = async index => {
@@ -44,7 +43,6 @@ export default function Comment(params) {
 
     if (e.target.className === "reComment__remove") {
       const reCommentIndex = e.target.closest(".reComment__li").dataset.index;
-      console.log(reCommentIndex);
       e.stopPropagation();
       this.deleteReComment(index, reCommentIndex);
     }
@@ -70,7 +68,6 @@ export default function Comment(params) {
 
   this.sendReComment = async (reComment, index) => {
     const commentId = data.comments[index]._id;
-    console.log(commentId);
     const response = await api.postReComment(commentId, { reComment });
     if (response.status === 200) {
       await this.getComments();

@@ -59,7 +59,6 @@ export const videoDetail = async (req, res) => {
           path: "creator"
         }
       });
-    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -189,7 +188,6 @@ export const postAddReComment = async (req, res) => {
     user
   } = req;
   try {
-    console.log("start recoment");
     const comment = await Comment.findById(id);
     const newReComment = await Comment.create({
       text: reComment,

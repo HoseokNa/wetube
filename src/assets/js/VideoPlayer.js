@@ -138,7 +138,6 @@ export default function VideoPlayer(params) {
     const {
       target: { value }
     } = e;
-    console.log(value);
     $targetVideoPlayer.currentTime = $targetVideoPlayer.duration * value;
   };
 

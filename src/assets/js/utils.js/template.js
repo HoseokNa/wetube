@@ -1,5 +1,4 @@
 export const reCommentTemplate = (loggedUserId, reComment, index) => {
-  console.log(reComment);
   const reCommentHTML = `
     <li class="reComment__li" data-index=${index}>
       <div class="comment__main">
