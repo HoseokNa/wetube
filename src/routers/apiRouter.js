@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "../routes";
-import {getLoggedUser} from "../controllers/userController";
+import { getLoggedUser } from "../controllers/userController";
 import {
   postRegisterView,
   postAddComment,
@@ -12,7 +12,7 @@ import {
 
 const apiRouter = express.Router();
 
-apiRouter.get(routes.loggedUser, getLoggedUser)
+apiRouter.get(routes.loggedUser, getLoggedUser);
 apiRouter.get(routes.comment, getComments);
 
 apiRouter.post(routes.registerView, postRegisterView);
