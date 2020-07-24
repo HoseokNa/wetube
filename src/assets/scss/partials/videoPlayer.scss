@@ -19,33 +19,37 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 2px;
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     font-size: 16px;
-    #jsProgressBar{
-      -webkit-appearance: none;
+    .videoPlayer__progressBar {
       max-width: 100%;
-      width:100%;
+      width: 100%;
       height: 1em;
+      opacity: 1;
+      z-index: 10;
       margin: 0 0 0.5em 0;
-      background: #858585;
-      transition: background 450ms ease-in;
+      input {
+        background-color: rgba(0, 0, 0, 0.7);
+        &::-webkit-slider-runnable-track {
+          background-color: $grey;
+          height: 5px;
+        }
+        &::-webkit-slider-thumb {
+          all: unset;
+          background-color: $red;
+          height: 15px;
+          width: 15px;
+          border-radius: 50%;
+          position: relative;
+          top: -5px;
+        }
+      }
     }
-    #jsProgressBar:focus {
-      outline: none;
-    }
-    #jsProgressBar::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      background: $red;
-      width: 0.8em;
-      height: 0.8em;
-      border-radius:50%;
-      cursor: pointer;
-    }
-    .videoPlayer__column{
+    .videoPlayer__column {
       display: flex;
       align-items: center;
-      #jsPlayButton{
+      #jsPlayButton {
         margin: 0 0.5em 0 0;
       }
       .videoPlayer__volume {
@@ -54,6 +58,7 @@
         z-index: 10;
         width: 80px;
         margin: 0 0.5em 0 0.5em;
+
         input {
           background-color: rgba(0, 0, 0, 0.7);
           &::-webkit-slider-runnable-track {
